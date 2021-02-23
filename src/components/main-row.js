@@ -1,7 +1,7 @@
 import React from "react";
 
 import Main from "./main.js";
-import Aside from "./aside.js";
+import Aside from "./aside/aside.js";
 
 const MainRow = () => {
   return(
