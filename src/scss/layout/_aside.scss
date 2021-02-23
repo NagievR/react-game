@@ -1,0 +1,23 @@
+.aside {
+  position: relative;
+  width: 6rem;
+  top: 0;
+}
+
+.aside-option-wrap {
+  margin: 0 auto;
+  margin-top: 2.2rem;
+  width: 75%;
+  max-width: 3.3rem;
+
+  &:first-child {
+    margin-top: 1rem;
+  }
+}
+
+.aside-option {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  filter: invert(100%);
+}
