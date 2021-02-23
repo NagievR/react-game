@@ -4,7 +4,7 @@ const AsideOption = ({ iconSrc }) => {
   return(
     <div className='aside-option-wrap'>
       <img 
-        className='aside-option' 
+        className='aside-option scale-anim' 
         src={iconSrc} 
         alt='icon' 
       />
