@@ -1,9 +1,13 @@
 import React from "react";
 
+import ExpressionBox from "./expression-box.js";
+import Counter from "./counter.js";
+
 const Main = () => {
   return(
     <main className='main'>
-      lorem
+      <ExpressionBox />
+      <Counter />
     </main>
   );
 };
