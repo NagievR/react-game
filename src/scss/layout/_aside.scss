@@ -1,7 +1,7 @@
 .aside {
   position: relative;
   width: 6rem;
-  top: 1.9rem;
+  top: 0;
   margin-left: 1rem;
 }
 
@@ -18,9 +18,9 @@
 
 .aside-option {
   cursor: pointer;
+  filter: invert(100%);
   width: 100%;
   height: 100%;
-  filter: invert(100%);
   transition: 0.12s ease-out;
 
   &:hover {

@@ -1,0 +1,23 @@
+.variants {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.variant {
+  cursor: pointer;
+  height: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f7f7f7;
+  border: 0.15rem solid #f7f7f7;
+  border-radius: 1rem;
+  background-color: #222222;
+  font-size: 2.5rem;
+}
+
+.variant-wrap {
+  width: 30%;
+  margin-bottom: 2.5rem;
+}

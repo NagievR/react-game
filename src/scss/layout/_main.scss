@@ -2,40 +2,22 @@
   margin: 0 auto;
   width: 50rem;
   max-width: 85%;
-  // border: 1px solid red;
-  min-height: 50vh;
+  padding: 0 0.5rem;
   letter-spacing: 0.2rem;
 }
 
-.expression-box {
-  border: 0.3rem solid #f7f7f7;
+.start-btn-wrap {
+  height: 100%;
   display: flex;
-  justify-content: center;
-  border-radius: 1.5rem;
-  background-color: #222222
-}
-
-.expression {
-  color: #f7f7f7;
-  font-size: 3rem;
-  word-spacing: 0.5rem;
-  // letter-spacing: 0.2rem;
-  margin: 1.5rem 0;
-}
-
-
-.counter-wrap {
-  margin: 1.3rem 0;
-  display: flex;
+  align-items: center;
   justify-content: center;
 }
 
-.counter {
-  color: #f7f7f7;
-  font-size: 1.6rem;
+.start-btn {
+  cursor: pointer;
+  text-transform: uppercase;
+  background-color: #f7f7f7;
+  // border: 0.1rem #f7f7f7 solid;
+  border-radius: 0.2rem;
+  padding: 1rem 1.5rem;
 }
-
-// .counter,
-// .expression {
-//   letter-spacing: 0.2rem;
-// }
