@@ -5,8 +5,8 @@ const NumbersRangeBlock = () => {
 
   return(
     <div className='settings-block'> 
-      <NumberRange name={'min number'} />
-      <NumberRange name={'max number'} />
+      <NumberRange name={'Min number'} />
+      <NumberRange name={'Max number'} />
     </div>
   );
 };
