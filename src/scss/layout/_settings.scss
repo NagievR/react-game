@@ -1,12 +1,25 @@
-.settings-wrap {
-  border: 1px solid blue;
-  padding: 0 1.5rem;
-  display: flex;
-  justify-content: center;
+.multiply-setting-wrap {
+  margin-bottom: 0.5rem;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
-.settings {
-  border: 1px solid springgreen;
-  width: 20rem;
-  height: 30vh;
+.settings-block {
+  margin-bottom: 3rem;
+}
+
+.number-range {
+  display: flex;
+  justify-content: space-between;
+
+  input {
+    width: 25%;
+    height: 1rem;
+  }
+}
+
+.option {
+  font-size: 1rem;
 }
