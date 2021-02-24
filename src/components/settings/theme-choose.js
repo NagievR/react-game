@@ -11,14 +11,14 @@ const ThemeChoose = () => {
           value="dark"
           defaultChecked
         />
-        <span>&nbsp;Dark</span>
+        <span className='option'>&nbsp;dark</span>
         <br />
         <input 
           name="theme" 
           type="radio" 
           value="lite" 
         /> 
-        <span>&nbsp;Lite</span>
+        <span className='option'>&nbsp;lite</span>
       </form> 
     </div>
   );

@@ -4,8 +4,8 @@ const NumberRange = ({ name }) => {
   return(
     <div className='multiply-setting-wrap'>
       <form className='number-range'>
-        <label htmlFor='range'>{`${name}:`}</label>
-        <input id='range' type="number" />
+        <span>{`${name}:`}</span>
+        <input type="number" />
       </form>
     </div>
   );

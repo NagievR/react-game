@@ -2,7 +2,7 @@ import React from "react";
   
 const AudioSetting = ({ name }) => {
   return(
-    <div className='audio-setting'>
+    <div className='multiply-setting-wrap'>
       <div>
         <span>{name}</span>
         <br />
