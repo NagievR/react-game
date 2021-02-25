@@ -9,11 +9,11 @@ const KeyboardInfo = () => {
           <p>
             Use keys from
             &nbsp;<span className='key-descr'>1</span>&nbsp;
-            to
+            to 
             &nbsp;<span className='key-descr'>6</span>&nbsp;
-            then press
-            &nbsp;<span className='key-descr'>Enter</span>
-            .
+            to choose a variant then press
+            &nbsp;<span className='key-descr'>Enter</span>&nbsp;
+            to confirm your answer.
           </p>
         </article>     
       </ModalWrap>

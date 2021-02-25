@@ -4,7 +4,9 @@
   }
 
   p {
+    font-size: 1.1rem;
     letter-spacing: 0;
+    user-select: text;
   }
 }
 
@@ -12,5 +14,5 @@
   font-family: 'Courier New';
   border: 0.1rem gray solid;
   border-radius: 0.2rem;
-  padding: 0 0.3rem;
+  padding: 0 0.4rem;
 }
