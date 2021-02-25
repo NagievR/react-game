@@ -6,19 +6,19 @@ const OperatorsChoose = () => {
       Choose operators:
       <br />
       <span className='option'>
-        <input type="checkbox" value="" />
+        <input type="checkbox" value="+" />
           &nbsp;addition<br />
       </span>
       <span className='option'>
-        <input type="checkbox" value="" />
+        <input type="checkbox" value="-" />
           &nbsp;subtraction<br /> 
       </span>
       <span className='option'>
-        <input type="checkbox" value="" />
+        <input type="checkbox" value="*" />
           &nbsp;multiplication<br /> 
       </span>
       <span className='option'>
-        <input type="checkbox" value="" />
+        <input type="checkbox" value="/" />
           &nbsp;division
       </span>
    </form>
