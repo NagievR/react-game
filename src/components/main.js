@@ -1,4 +1,5 @@
 import React from "react";
+import useStore from "../logic/store.js";
 
 import ExpressionBox from "./game-field/expression-box.js";
 import Timer from "./game-field/timer.js";
@@ -9,7 +10,8 @@ import KeyboardInfo from "./keyboard-info.js";
 
 const Main = () => {
 
-// eslint-disable-next-line
+  const { sectionToShow } = useStore();
+
   const gameField = (
     <>
       <ExpressionBox />
@@ -18,18 +20,14 @@ const Main = () => {
     </>
   );
 
-// eslint-disable-next-line
   const startGame = (
-    // Must be at the end of conditional rendering
     <StartGameButton />
   );
 
-// eslint-disable-next-line
   const settings = (
     <Settings />
   );
 
-  // eslint-disable-next-line
   const keyboardInfo = (
     <KeyboardInfo />
   );
@@ -37,7 +35,10 @@ const Main = () => {
   return(
     <main className='main'>
       {
-        keyboardInfo
+        (sectionToShow.gameField && gameField)
+        || (sectionToShow.settings && settings)
+        || (sectionToShow.keyboardInfo && keyboardInfo)
+        || startGame
       }
     </main>
   );
