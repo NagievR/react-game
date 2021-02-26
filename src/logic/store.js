@@ -16,9 +16,19 @@ export const StoreProvider = ({ children }) => {
     })
   );
 
+  const [expression, setExpression] = useState(
+    localStorageManager.get('expression', {
+      expression: '',
+      result: '',
+    })
+  );
+
   const context = {
     sectionToShow,
     setSectionToShow,
+
+    expression,
+    setExpression,
   };
 
   return (

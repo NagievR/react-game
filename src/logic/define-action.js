@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import { sectionsFlags, close} from "./consts.js";
 import useHandlers from "./handlers.js";
+import * as consts from "./consts.js";
 
 const Context = React.createContext();
 export default function useDefineAction() {
@@ -12,16 +12,20 @@ export const DefineActionProvider = ({ children }) => {
   const { 
     switchSection,
     closeSections,
+    generateNewExpression,
   } = useHandlers();
 
   const defineAction = action => {
-
-    if (sectionsFlags.includes(action)) {
+    if (consts.sectionsFlags.includes(action)) {
       switchSection(action);
     }
     switch (action) {
-      case close:
+      case consts.close:
         closeSections();
+        break;
+
+      case consts.newExpression:
+        generateNewExpression();
         break;
 
       default:
