@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
   
 const AudioSetting = ({ name }) => {
   return(
@@ -15,6 +16,10 @@ const AudioSetting = ({ name }) => {
       </div>
     </div>
   );
+};
+
+AudioSetting.propTypes = {
+  name: PropTypes.string,
 };
 
 export default AudioSetting;

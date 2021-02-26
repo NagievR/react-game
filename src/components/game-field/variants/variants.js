@@ -1,7 +1,7 @@
 import React from "react";
-import useDefineAction from "../../../logic/define-action";
 import Variant from "./variant";
 import { newMathExpression } from "../../../logic/consts.js";
+import useDefineAction from "../../../logic/define-action";
 
 const Variants = () => {
 
@@ -12,7 +12,7 @@ const Variants = () => {
   };
   
   // tmp const
-    const variants = [42,2,56,42,67,23]; 
+    const variants = ['42','2','56','42','67','23']; 
   // =========
 
   return(

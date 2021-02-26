@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const NumberRange = ({ name }) => {
   return(
@@ -9,6 +10,10 @@ const NumberRange = ({ name }) => {
       </form>
     </div>
   );
+};
+
+NumberRange.propTypes = {
+  name: PropTypes.string,
 };
 
 export default NumberRange;

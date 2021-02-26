@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 const AsideOption = ({ iconSrc, openSection, fullscreen }) => {
 
@@ -21,6 +22,12 @@ const AsideOption = ({ iconSrc, openSection, fullscreen }) => {
       />
     </div>
   );
+};
+
+AsideOption.propTypes = {
+  iconSrc: PropTypes.string,
+  openSection: PropTypes.func,
+  fullscreen: PropTypes.func,
 };
 
 export default AsideOption;

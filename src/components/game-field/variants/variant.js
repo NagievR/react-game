@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Variant = ({ elem }) => {
   return(
@@ -8,6 +9,10 @@ const Variant = ({ elem }) => {
       </div>
     </div>
   );
+};
+
+Variant.propTypes = {
+  elem: PropTypes.string,
 };
 
 export default Variant;
