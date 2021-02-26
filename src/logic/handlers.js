@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { localStorageManager } from './local-storage-manager';
 import useStore from './store';
 
 const Context = React.createContext();
@@ -21,7 +22,7 @@ export const HandlersProvider = ({ children }) => {
     ));
     const switchedObj = Object.fromEntries(switchedArr);
     setSectionToShow(switchedObj);
-
+    localStorageManager.set('sectionToShow', switchedObj);
   };
 
   const closeSections = () => {
@@ -30,7 +31,7 @@ export const HandlersProvider = ({ children }) => {
     ));
     const switchedObj = Object.fromEntries(switchedArr);
     setSectionToShow(switchedObj);
-
+    localStorageManager.set('sectionToShow', switchedObj);
   };
 
   const context = {

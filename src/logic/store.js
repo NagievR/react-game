@@ -1,4 +1,5 @@
 import React, { useState, useContext } from 'react';
+import { localStorageManager } from './local-storage-manager';
 
 const Context = React.createContext();
 export default function useStore() {
@@ -7,11 +8,13 @@ export default function useStore() {
 
 export const StoreProvider = ({ children }) => {
 
-  const [sectionToShow, setSectionToShow] = useState({
-    gameField: false,
-    settings: false,
-    keyboardInfo: false,
-  });
+  const [sectionToShow, setSectionToShow] = useState(
+    localStorageManager.get('sectionToShow', {
+      gameField: false,
+      settings: false,
+      keyboardInfo: false,
+    })
+  );
 
   const context = {
     sectionToShow,
