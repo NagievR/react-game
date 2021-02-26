@@ -1,13 +1,13 @@
 import React from "react";
 import useDefineAction from "../logic/define-action.js"
-import { gameField, newExpression } from "../logic/consts.js";
+import { gameField, newMathExpression } from "../logic/consts.js";
 
 const StartGameButton = () => {
   
   const { defineAction } = useDefineAction();
 
   const handleClick = () => {
-    defineAction(newExpression);
+    defineAction(newMathExpression);
     defineAction(gameField);
   };
 

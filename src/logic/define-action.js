@@ -12,7 +12,7 @@ export const DefineActionProvider = ({ children }) => {
   const { 
     switchSection,
     closeSections,
-    generateNewExpression,
+    generateMathExpression,
   } = useHandlers();
 
   const defineAction = action => {
@@ -24,8 +24,8 @@ export const DefineActionProvider = ({ children }) => {
         closeSections();
         break;
 
-      case consts.newExpression:
-        generateNewExpression();
+      case consts.newMathExpression:
+        generateMathExpression();
         break;
 
       default:

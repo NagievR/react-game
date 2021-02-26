@@ -1,14 +1,14 @@
 import React from "react";
 import useDefineAction from "../../../logic/define-action";
 import Variant from "./variant";
-import { newExpression } from "../../../logic/consts.js";
+import { newMathExpression } from "../../../logic/consts.js";
 
 const Variants = () => {
 
   const { defineAction } = useDefineAction();  
 
   const handleClick = () => {
-    defineAction(newExpression);
+    defineAction(newMathExpression);
   };
   
   // tmp const

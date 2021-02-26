@@ -3,12 +3,12 @@ import useStore from "../../logic/store";
 
 const ExpressionBox = () => {
   
-  const { expression } = useStore();
+  const { mathExpression } = useStore();
 
   return (
     <div className='expression-box'>
       <div className='expression'>
-        {`${expression.expression}=?`}
+        {`${mathExpression.expression}=?`}
       </div>
     </div>
   );

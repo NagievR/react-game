@@ -5,4 +5,4 @@ export const sectionsFlags = [gameField, settings, keyboardInfo];
 
 export const close = 'close';
 
-export const newExpression = 'newExpression'; 
+export const newMathExpression = 'newMathExpression'; 

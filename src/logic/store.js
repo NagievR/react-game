@@ -16,8 +16,8 @@ export const StoreProvider = ({ children }) => {
     })
   );
 
-  const [expression, setExpression] = useState(
-    localStorageManager.get('expression', {
+  const [mathExpression, setMathExpression] = useState(
+    localStorageManager.get('mathExpression', {
       expression: '',
       result: '',
     })
@@ -27,8 +27,8 @@ export const StoreProvider = ({ children }) => {
     sectionToShow,
     setSectionToShow,
 
-    expression,
-    setExpression,
+    mathExpression,
+    setMathExpression,
   };
 
   return (
