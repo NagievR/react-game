@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import AsideOption from "./aside-option.js";
 import * as consts from "../../logic/consts.js";
 import useDefineAction from "../../logic/define-action.js";
 
 // icons
 import setFullscreen from "../../icons/fullscreen-open.svg";
+import cancelFullscreen from "../../icons/fullscreen-close.svg";
 import settings from "../../icons/settings.svg";
 import keyboard from "../../icons/keyboard.svg";
 import podium from "../../icons/podium.svg";
 
 const Aside = () => {
+
+  const [fullscreenIcon, setFullscreenIcon] = useState(setFullscreen); 
 
   const { defineAction } = useDefineAction();
 
@@ -17,10 +20,21 @@ const Aside = () => {
     defineAction(action);
   };
 
+  const toggleFullscreen = () => {
+    if (document.fullscreenElement) {
+      setFullscreenIcon(setFullscreen);
+      document.webkitCancelFullScreen();
+    } else {
+      setFullscreenIcon(cancelFullscreen);
+      document.documentElement.webkitRequestFullscreen()
+    }
+  };
+
   return(
     <div className='aside'>
       <AsideOption
-        iconSrc={setFullscreen}
+        iconSrc={fullscreenIcon}
+        fullscreen={toggleFullscreen}
       />
       <AsideOption
         openSection={() => openSection(consts.settings)}

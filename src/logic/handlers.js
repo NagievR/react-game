@@ -21,10 +21,21 @@ export const HandlersProvider = ({ children }) => {
     ));
     const switchedObj = Object.fromEntries(switchedArr);
     setSectionToShow(switchedObj);
+
+  };
+
+  const closeSections = () => {
+    const switchedArr = Object.entries(sectionToShow).map(field => (
+      [ field[0], field[1] = false ]
+    ));
+    const switchedObj = Object.fromEntries(switchedArr);
+    setSectionToShow(switchedObj);
+
   };
 
   const context = {
     switchSection,
+    closeSections,
   };
 
   return (

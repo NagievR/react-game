@@ -1,12 +1,14 @@
 import React from "react";
 
-const AsideOption = ({ iconSrc, openSection }) => {
+const AsideOption = ({ iconSrc, openSection, fullscreen }) => {
 
   const handleClick = () => {
     if (openSection) {
       openSection();
+    } else if (fullscreen) {
+      fullscreen();
     } else {
-      console.log('will add later');
+      console.log('unknown');
     }
   };
 
