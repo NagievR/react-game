@@ -8,7 +8,7 @@ const ExpressionBox = () => {
   return (
     <div className='expression-box'>
       <div className='expression'>
-        {`${mathExpression.expression}=?`}
+        {`${mathExpression.expression} =?`}
       </div>
     </div>
   );
