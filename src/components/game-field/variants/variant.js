@@ -1,18 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Variant = ({ elem }) => {
+const Variant = ({ inner, className, idx, handleClick }) => {
   return(
-    <div className='variant-wrap'>
-      <div className='variant'>
-        {elem}
+    <div className={`variant-wrap ${className}`} onClick={handleClick}>
+      <div id={idx} className='variant'>
+        {inner}
       </div>
     </div>
   );
 };
 
 Variant.propTypes = {
-  elem: PropTypes.string,
+  inner: PropTypes.number,
+  className: PropTypes.string,
+  idx: PropTypes.string,
+  handleClick: PropTypes.func,
 };
 
 export default Variant;

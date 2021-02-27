@@ -12,7 +12,8 @@ export const HandlersProvider = ({ children }) => {
   const {
     sectionToShow,
     setSectionToShow,
-    setMathExpression,
+    mathContainer,
+    setMathContainer,
   } = useStore();
 
   const switchSection = toShow => {
@@ -35,18 +36,17 @@ export const HandlersProvider = ({ children }) => {
     localStorageManager.set('sectionToShow', switchedObj);
   };
 
-  const generateMathExpression = () => {
+  const generateMathContainer = () => {
     
     // temporary values: 
-      const min = -5;
-      const max = 30;
+      const min = 1;
+      const max = 20;
       const choseOperators = ['*', '+', '-', '/'];
-      const exprLength = 3;
+      const exprLength = 1;
     // ================
 
 
     // ======== helpers =========
-
     const randomize = (from, to) => {
       return Math.round(Math.random() * (to - from) + from);
     };
@@ -57,7 +57,6 @@ export const HandlersProvider = ({ children }) => {
         [array[i], array[j]] = [array[j], array[i]];
       }
     }
-
     // ====== /helpers ==========
 
     let newExpression = '';
@@ -89,7 +88,6 @@ export const HandlersProvider = ({ children }) => {
     newVariants.push(newResult);
 
     for (let i = 0; i < 5; i++) {
-      
       let from = newResult - 10 * String(newResult).length;
       let to = newResult + 10 * String(newResult).length;
       
@@ -107,23 +105,28 @@ export const HandlersProvider = ({ children }) => {
 
     shuffle(newVariants);
 
-    const newMathExpression = {
+    const newMathContainer = {
       expression: newExpression, 
-      result: newResult, 
       correctAnswerIdx: newVariants.indexOf(newResult),
       userAnswerIdx: null,
       variants: newVariants,
     };
 
-    console.log(newMathExpression);
-    setMathExpression(newMathExpression);
-    localStorageManager.set('mathExpression', newMathExpression);
+    // console.log(newMathContainer);
+    setMathContainer(newMathContainer);
+    localStorageManager.set('mathContainer', newMathContainer);
+  };
+
+  const defineUserAnswer = (idx) => {
+    setMathContainer({ ...mathContainer, userAnswerIdx: idx });
+    console.log(mathContainer.correctAnswerIdx === idx);
   };
 
   const context = {
     switchSection,
     closeSections,
-    generateMathExpression,
+    generateMathContainer,
+    defineUserAnswer,
   };
 
   return (

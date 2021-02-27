@@ -12,10 +12,11 @@ export const DefineActionProvider = ({ children }) => {
   const { 
     switchSection,
     closeSections,
-    generateMathExpression,
+    generateMathContainer,
+    defineUserAnswer,
   } = useHandlers();
 
-  const defineAction = action => {
+  const defineAction = (action, payload) => {
     if (consts.sectionsFlags.includes(action)) {
       switchSection(action);
     }
@@ -23,11 +24,12 @@ export const DefineActionProvider = ({ children }) => {
       case consts.close:
         closeSections();
         break;
-
-      case consts.newMathExpression:
-        generateMathExpression();
+      case consts.newMathContainer:
+        generateMathContainer();
         break;
-
+      case consts.userAnswer:
+        defineUserAnswer(payload);
+        break;
       default:
         break;
     }

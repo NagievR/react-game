@@ -16,19 +16,21 @@ export const StoreProvider = ({ children }) => {
     })
   );
 
-  const [mathExpression, setMathExpression] = useState(
-    localStorageManager.get('mathExpression', {
-      expression: '',
-      result: '',
+  const [mathContainer, setMathContainer] = useState(
+    localStorageManager.get('mathContainer', {
+      expression: null,
+      correctAnswerIdx: null,
+      userAnswerIdx: null,
+      variants: [],
     })
   );
 
   const context = {
-    sectionToShow,
+    sectionToShow, 
     setSectionToShow,
-
-    mathExpression,
-    setMathExpression,
+    
+    mathContainer, 
+    setMathContainer,
   };
 
   return (

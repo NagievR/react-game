@@ -1,25 +1,47 @@
 import React from "react";
 import Variant from "./variant";
-import { newMathExpression } from "../../../logic/consts.js";
+import { newMathContainer, userAnswer } from "../../../logic/consts.js";
 import useDefineAction from "../../../logic/define-action";
+import useStore from "../../../logic/store";
 
 const Variants = () => {
 
   const { defineAction } = useDefineAction();  
-
-  const handleClick = () => {
-    defineAction(newMathExpression);
-  };
+  const { mathContainer } = useStore();
   
-  // tmp const
-    const variants = ['42','2','56','42','67','23']; 
-  // =========
+  const handleClick = event => { 
+    defineAction(userAnswer, +event.target.id);
+    setTimeout(() => defineAction(newMathContainer), 900);
+  };
+
+  const mapVariants = () => {
+    return mathContainer.variants.map((el, idx) => {
+      let className = '';
+
+      if (mathContainer.userAnswerIdx !== null) {
+        if (idx === mathContainer.userAnswerIdx) {
+          className='incorrect-answer';
+        }
+        if (idx === mathContainer.correctAnswerIdx) {
+          className='correct-answer';
+        }
+      }
+
+      return(
+        <Variant
+          className={className} 
+          handleClick={handleClick}
+          idx={String(idx)}
+          key={idx} 
+          inner={el} 
+        />
+      );
+    });
+  };
 
   return(
-    <div onClick={handleClick} className='variants'>
-      {variants.map((el, i) => (
-        <Variant key={i} elem={el} />
-      ))}
+    <div className='variants'>
+      {mapVariants()}
     </div>
   );
 };

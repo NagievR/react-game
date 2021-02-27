@@ -5,4 +5,6 @@ export const sectionsFlags = [gameField, settings, keyboardInfo];
 
 export const close = 'close';
 
-export const newMathExpression = 'newMathExpression'; 
+export const newMathContainer = 'newMathContainer'; 
+
+export const userAnswer = 'userAnswer';
