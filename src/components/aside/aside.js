@@ -4,11 +4,11 @@ import * as consts from "../../logic/consts.js";
 import useDefineAction from "../../logic/define-action.js";
 
 // icons
-import setFullscreen from "../../icons/fullscreen-open.svg";
-import cancelFullscreen from "../../icons/fullscreen-close.svg";
-import settings from "../../icons/settings.svg";
-import keyboard from "../../icons/keyboard.svg";
-import podium from "../../icons/podium.svg";
+import setFullscreen from "../../assets/icons/fullscreen-open.svg";
+import cancelFullscreen from "../../assets/icons/fullscreen-close.svg";
+import settings from "../../assets/icons/settings.svg";
+import keyboard from "../../assets/icons/keyboard.svg";
+import podium from "../../assets/icons/podium.svg";
 
 const Aside = () => {
 

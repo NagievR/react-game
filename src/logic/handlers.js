@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import { localStorageManager } from './local-storage-manager';
 import useStore from './store';
+import correct from "../assets/audio/correct.mp3";
+import incorrect from "../assets/audio/incorrect.mp3";
 
 const Context = React.createContext();
 export default function useHandlers() {
@@ -119,7 +121,13 @@ export const HandlersProvider = ({ children }) => {
 
   const defineUserAnswer = (idx) => {
     setMathContainer({ ...mathContainer, userAnswerIdx: idx });
-    console.log(mathContainer.correctAnswerIdx === idx);
+    let sound = null;
+    if (mathContainer.correctAnswerIdx === idx) {
+      sound = new Audio(correct);
+    } else {
+      sound = new Audio(incorrect);
+    }
+    sound.play();
   };
 
   const context = {
