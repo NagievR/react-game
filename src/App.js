@@ -10,22 +10,19 @@ function App() {
 
   const [song] = useState(new Audio(mainSong));
 
-  const [musicSettings, setMusicSettings] = useState({
-    playing: false,
-    volume: audioSettings.musicVolume,
-  });
+  const [musicPlaying, setMusicPlaying] = useState(false);
 
   useEffect(() => {
     song.volume = audioSettings.musicVolume;
   }, [audioSettings.musicVolume]);
 
   const handleClick = () => {
-    if (musicSettings.playing) {
+    if (musicPlaying) {
       return;
     }
     song.play();
     song.loop = true;
-    setMusicSettings({ musicSettings, playing: true });
+    setMusicPlaying(true);
   };
 
   return ( 
