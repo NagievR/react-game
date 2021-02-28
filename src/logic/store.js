@@ -25,12 +25,45 @@ export const StoreProvider = ({ children }) => {
     })
   );
 
+  const [audioSettings, setAudioSettings] = useState(
+    localStorageManager.get('audioSettings', {
+      musicVolume: 1,
+      soundVolume: 1,
+    })
+  );
+
+  const [gameProgress, setGameProgress] = useState(
+    localStorageManager.get('gameProgress', {
+      timeLeft: 20,
+      triesLeft: 3,
+      score: 0,
+    })
+  );
+
+  const [gameSettings, setGameSettings] = useState(
+    localStorageManager.get('gameSettings', {
+      minNumber: 1,
+      maxNumber: 50,
+      expressionLength: 1,
+      choseOperators: ['+', '-']
+    })
+  );
+
   const context = {
     sectionToShow, 
     setSectionToShow,
     
     mathContainer, 
     setMathContainer,
+
+    gameSettings,
+    setGameSettings,
+
+    audioSettings,
+    setAudioSettings,
+
+    gameProgress,
+    setGameProgress,
   };
 
   return (

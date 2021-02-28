@@ -14,6 +14,8 @@ export const DefineActionProvider = ({ children }) => {
     closeSections,
     generateMathContainer,
     defineUserAnswer,
+    regulateAudioVolume,
+    setNumbersRange,
   } = useHandlers();
 
   const defineAction = (action, payload) => {
@@ -29,6 +31,12 @@ export const DefineActionProvider = ({ children }) => {
         break;
       case consts.userAnswer:
         defineUserAnswer(payload);
+        break;
+      case consts.audioVolume:
+        regulateAudioVolume(payload);
+        break;
+      case consts.numbersRange: 
+        setNumbersRange(payload);
         break;
       default:
         break;

@@ -12,13 +12,27 @@ export default function useHandlers() {
 export const HandlersProvider = ({ children }) => {
   
   const {
-    sectionToShow,
+    sectionToShow, 
     setSectionToShow,
-    mathContainer,
+    
+    mathContainer, 
     setMathContainer,
+
+    gameSettings,
+    setGameSettings,
+
+    audioSettings,
+    setAudioSettings,
+
+    gameProgress,
+    setGameProgress,
   } = useStore();
 
   const switchSection = toShow => {
+    // let a = window.confirm('skip?');
+    
+    // if (!a) return
+
     const switchedArr = Object.entries(sectionToShow).map(field => (
       field[0] === toShow 
       ? [ field[0], field[1] = true ]
@@ -39,14 +53,6 @@ export const HandlersProvider = ({ children }) => {
   };
 
   const generateMathContainer = () => {
-    
-    // temporary values: 
-      const min = 1;
-      const max = 20;
-      const choseOperators = ['*', '+', '-', '/'];
-      const exprLength = 1;
-    // ================
-
 
     // ======== helpers =========
     const randomize = (from, to) => {
@@ -60,6 +66,11 @@ export const HandlersProvider = ({ children }) => {
       }
     }
     // ====== /helpers ==========
+
+    const min = gameSettings.minNumber;
+    const max = gameSettings.maxNumber;
+    const choseOperators = ['*', '+', '-', '/'];
+    const exprLength = 2;
 
     let newExpression = '';
     for (let i = 0; i < exprLength + 1; i++) {
@@ -114,7 +125,6 @@ export const HandlersProvider = ({ children }) => {
       variants: newVariants,
     };
 
-    // console.log(newMathContainer);
     setMathContainer(newMathContainer);
     localStorageManager.set('mathContainer', newMathContainer);
   };
@@ -127,7 +137,35 @@ export const HandlersProvider = ({ children }) => {
     } else {
       sound = new Audio(incorrect);
     }
+    sound.volume = audioSettings.soundVolume;
     sound.play();
+  };
+
+  const regulateAudioVolume = data => {
+    const [target, value] = data;
+    const valueConverted = value / 10;
+    const regulated = { ...audioSettings, [target]: valueConverted };
+    setAudioSettings(regulated);
+    localStorageManager.set('audioSettings', regulated);
+  };
+
+  const setNumbersRange = data => {
+    const [target, value] = data;
+    const minNum = 'minNumber';
+    const maxNum = 'maxNumber';
+    
+    const min = gameSettings.minNumber;
+    const max = gameSettings.maxNumber;
+
+    if ((target === minNum && value >= max)
+      || (target === maxNum && min >= value)
+      || (value > 999 || value < -999)) {
+      return;
+    }
+
+    const updatedSettings = { ...gameSettings, [target]: Number(value) };
+    setGameSettings(updatedSettings)
+    localStorageManager.set('gameSettings', updatedSettings);
   };
 
   const context = {
@@ -135,6 +173,8 @@ export const HandlersProvider = ({ children }) => {
     closeSections,
     generateMathContainer,
     defineUserAnswer,
+    regulateAudioVolume,
+    setNumbersRange,
   };
 
   return (
