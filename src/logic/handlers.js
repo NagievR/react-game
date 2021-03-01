@@ -28,10 +28,20 @@ export const HandlersProvider = ({ children }) => {
     setGameProgress,
   } = useStore();
 
+  const inGameToggle = bool => {
+    const isInGame = { ...gameProgress, inGame: bool };
+    setGameProgress(isInGame);
+    localStorageManager.set('gameProgress', isInGame);
+  };
+
   const switchSection = toShow => {
-    // let a = window.confirm('skip?');
-    
-    // if (!a) return
+
+    const question = `skip and go to ${toShow}?`;
+    if (gameProgress.inGame && !window.confirm(question)) {
+      return;
+    } else {
+      inGameToggle(false);
+    }
 
     const switchedArr = Object.entries(sectionToShow).map(field => (
       field[0] === toShow 
@@ -53,7 +63,7 @@ export const HandlersProvider = ({ children }) => {
   };
 
   const generateMathContainer = () => {
-    
+
     // ======== helpers =========
     const randomize = (from, to) => {
       return Math.round(Math.random() * (to - from) + from);
@@ -69,8 +79,8 @@ export const HandlersProvider = ({ children }) => {
 
     const min = gameSettings.minNumber;
     const max = gameSettings.maxNumber;
-    const choseOperators = ['*', '+', '-', '/'];
     const exprLength = Number(gameSettings.expressionLength);
+    const choseOperators = ['*', '+', '-', '/'];
 
     let newExpression = '';
     for (let i = 0; i < exprLength + 1; i++) {
@@ -125,6 +135,8 @@ export const HandlersProvider = ({ children }) => {
       variants: newVariants,
     };
 
+    inGameToggle(true);
+
     setMathContainer(newMathContainer);
     localStorageManager.set('mathContainer', newMathContainer);
   };
@@ -170,8 +182,6 @@ export const HandlersProvider = ({ children }) => {
   
   const setExpressionLength = length => {
     const lengthSet = { ...gameSettings, expressionLength: length };
-    console.log(gameSettings.expressionLength);
-    console.log(lengthSet);
     setGameSettings(lengthSet);
     localStorageManager.set('gameSettings', lengthSet);
   };
