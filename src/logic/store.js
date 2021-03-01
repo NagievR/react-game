@@ -37,6 +37,7 @@ export const StoreProvider = ({ children }) => {
       timeLeft: 20,
       triesLeft: 3,
       score: 0,
+      inGame: false,
     })
   );
 
@@ -44,7 +45,7 @@ export const StoreProvider = ({ children }) => {
     localStorageManager.get('gameSettings', {
       minNumber: 1,
       maxNumber: 50,
-      expressionLength: 1,
+      expressionLength: '1',
       choseOperators: ['+', '-']
     })
   );

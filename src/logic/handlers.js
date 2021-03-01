@@ -53,7 +53,7 @@ export const HandlersProvider = ({ children }) => {
   };
 
   const generateMathContainer = () => {
-
+    
     // ======== helpers =========
     const randomize = (from, to) => {
       return Math.round(Math.random() * (to - from) + from);
@@ -70,7 +70,7 @@ export const HandlersProvider = ({ children }) => {
     const min = gameSettings.minNumber;
     const max = gameSettings.maxNumber;
     const choseOperators = ['*', '+', '-', '/'];
-    const exprLength = 2;
+    const exprLength = Number(gameSettings.expressionLength);
 
     let newExpression = '';
     for (let i = 0; i < exprLength + 1; i++) {
@@ -167,6 +167,14 @@ export const HandlersProvider = ({ children }) => {
     setGameSettings(updatedSettings)
     localStorageManager.set('gameSettings', updatedSettings);
   };
+  
+  const setExpressionLength = length => {
+    const lengthSet = { ...gameSettings, expressionLength: length };
+    console.log(gameSettings.expressionLength);
+    console.log(lengthSet);
+    setGameSettings(lengthSet);
+    localStorageManager.set('gameSettings', lengthSet);
+  };
 
   const context = {
     switchSection,
@@ -175,6 +183,7 @@ export const HandlersProvider = ({ children }) => {
     defineUserAnswer,
     regulateAudioVolume,
     setNumbersRange,
+    setExpressionLength,
   };
 
   return (

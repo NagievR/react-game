@@ -7,3 +7,4 @@ export const newMathContainer = 'newMathContainer';
 export const userAnswer = 'userAnswer';
 export const audioVolume = 'audioVolume';
 export const numbersRange = 'numbersRange';
+export const expressionLength = 'expressionLength';
