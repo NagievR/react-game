@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const Variant = ({ inner, className, idx, handleClick }) => {
   return(
-    <div className='variant-wrap' onClick={handleClick}>
+    <div className='variant-wrap scale-anim' onClick={handleClick}>
       <div id={idx} className={`variant ${className}`}>
         {inner}
       </div>
