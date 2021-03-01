@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const NumberRange = ({ name, id, handleChange, value }) => {
   return(
     <div className='multiply-setting-wrap'>
-      <form className='number-range'>
+      <form onSubmit={e => e.preventDefault()} className='number-range'>
         <span>{`${name}:`}</span>
         <input 
           id={id} 
