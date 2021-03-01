@@ -9,12 +9,11 @@ function App() {
   const { audioSettings } = useStore();
 
   const [song] = useState(new Audio(mainSong));
-
   const [musicPlaying, setMusicPlaying] = useState(false);
 
   useEffect(() => {
     song.volume = audioSettings.musicVolume;
-  }, [audioSettings.musicVolume]);
+  }, [audioSettings.musicVolume, song]);
 
   const handleClick = () => {
     if (musicPlaying) {
