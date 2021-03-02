@@ -1,0 +1,50 @@
+.game-status-wrap {
+  margin: 4vh 0;
+  margin-bottom: 5vh;
+  display: flex;
+  justify-content: space-between;
+  color: #f7f7f7;
+  font-size: 1.5rem;
+  padding: 0 1rem;
+}
+
+.unit {
+  font-size: 1rem;
+  letter-spacing: 0;
+  
+  @media (max-width: 768px) {
+    font-size: 2.5vw;
+  }
+}
+
+.timer {
+  justify-content: flex-end;
+}
+
+.score {
+  justify-content: flex-start;
+}
+
+.hearts-box {
+  justify-content: center;
+}
+
+.hearts-box,
+.score,
+.timer {
+  display: flex;
+  width: 33.3%;
+}
+
+.score,
+.timer {
+  @media (max-width: 768px) {
+    font-size: 3.5vw;
+  }
+}
+
+.heart {
+  width: 1.7rem;
+  height: 1.7rem;
+}
+
