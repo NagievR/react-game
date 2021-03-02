@@ -3,7 +3,7 @@ import useStore from "../../logic/store";
 import { chooseOperator } from "../../logic/consts.js";
 import useDefineAction from "../../logic/define-action";
 
-const OperatorsChoose = () => {
+const ChooseOperator = () => {
 
   const { gameSettings } = useStore();
   const { defineAction } = useDefineAction();
@@ -59,4 +59,4 @@ const OperatorsChoose = () => {
   );
 };
 
-export default OperatorsChoose;
+export default ChooseOperator;
