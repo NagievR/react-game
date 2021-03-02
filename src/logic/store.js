@@ -44,10 +44,14 @@ export const StoreProvider = ({ children }) => {
   const [gameSettings, setGameSettings] = useState(
     localStorageManager.get('gameSettings', {
       minNumber: 1,
-      maxNumber: 50,
+      maxNumber: 20,
       expressionLength: '1',
       choseOperators: ['+', '-']
     })
+  );
+
+  const [playingAnimation, setPlayingAnimation] = useState(
+    localStorageManager.get('playingAnimation', false)
   );
 
   const context = {
@@ -65,6 +69,9 @@ export const StoreProvider = ({ children }) => {
 
     gameProgress,
     setGameProgress,
+
+    playingAnimation,
+    setPlayingAnimation,
   };
 
   return (

@@ -12,8 +12,8 @@ const StartGameButton = () => {
   };
 
   return(
-    <div onClick={handleClick} className='start-btn-wrap'>
-      <div className='start-btn scale-anim'>
+    <div className='start-btn-wrap'>
+      <div onClick={handleClick} className='start-btn scale-anim'>
         start game
       </div>
     </div>

@@ -8,3 +8,4 @@ export const userAnswer = 'userAnswer';
 export const audioVolume = 'audioVolume';
 export const numbersRange = 'numbersRange';
 export const expressionLength = 'expressionLength';
+export const newMathContainerDelayed = 'newMathContainerDelayed';

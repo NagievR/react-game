@@ -17,6 +17,7 @@ export const DefineActionProvider = ({ children }) => {
     regulateAudioVolume,
     setNumbersRange,
     setExpressionLength,
+    generateMathContainerDelayed,
   } = useHandlers();
 
   const defineAction = (action, payload) => {
@@ -41,6 +42,10 @@ export const DefineActionProvider = ({ children }) => {
         break;
       case consts.expressionLength:
         setExpressionLength(payload);
+        break;
+      case consts.newMathContainerDelayed:
+        generateMathContainerDelayed();
+        break;
       default:
         break;
     }

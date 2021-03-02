@@ -26,6 +26,9 @@ export const HandlersProvider = ({ children }) => {
 
     gameProgress,
     setGameProgress,
+
+    playingAnimation,
+    setPlayingAnimation,
   } = useStore();
 
   const inGameToggle = bool => {
@@ -35,9 +38,13 @@ export const HandlersProvider = ({ children }) => {
   };
 
   const switchSection = toShow => {
+    
+    const question = (
+      `You did some progress in the current game.
+      Skip and go to ${toShow} anyway?`
+    );
 
-    const question = `skip and go to ${toShow}?`;
-    if (gameProgress.inGame && !window.confirm(question)) {
+    if (playingAnimation || (gameProgress.inGame && !window.confirm(question))) {
       return;
     } else {
       inGameToggle(false);
@@ -60,6 +67,18 @@ export const HandlersProvider = ({ children }) => {
     const switchedObj = Object.fromEntries(switchedArr);
     setSectionToShow(switchedObj);
     localStorageManager.set('sectionToShow', switchedObj);
+  };
+
+  const generateMathContainerDelayed = (ms=900) => {
+    if (!playingAnimation) {
+      setPlayingAnimation(true); 
+      setTimeout(() => {
+        setPlayingAnimation(false);
+        generateMathContainer();
+        localStorageManager.set('playingAnimation', false);
+      }, ms);
+    }
+    
   };
 
   const generateMathContainer = () => {
@@ -142,6 +161,9 @@ export const HandlersProvider = ({ children }) => {
   };
 
   const defineUserAnswer = (idx) => {
+    if (playingAnimation) {
+      return;
+    }
     setMathContainer({ ...mathContainer, userAnswerIdx: idx });
     let sound = null;
     if (mathContainer.correctAnswerIdx === idx) {
@@ -194,6 +216,7 @@ export const HandlersProvider = ({ children }) => {
     regulateAudioVolume,
     setNumbersRange,
     setExpressionLength,
+    generateMathContainerDelayed,
   };
 
   return (

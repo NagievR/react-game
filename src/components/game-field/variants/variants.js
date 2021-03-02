@@ -1,10 +1,8 @@
 import React from "react";
 import Variant from "./variant";
-import { newMathContainer, userAnswer } from "../../../logic/consts.js";
+import { newMathContainerDelayed, userAnswer } from "../../../logic/consts.js";
 import useDefineAction from "../../../logic/define-action";
 import useStore from "../../../logic/store";
-
-let canClick = true;
 
 const Variants = () => {
 
@@ -12,15 +10,8 @@ const Variants = () => {
   const { mathContainer } = useStore();
   
   const handleClick = event => {
-    if (!canClick) {
-      return;
-    }
     defineAction(userAnswer, +event.target.id);
-    setTimeout(() => {
-      defineAction(newMathContainer);
-      canClick=true;
-    }, 900);
-    canClick = false
+    defineAction(newMathContainerDelayed);
   };
 
   const mapVariants = () => {
