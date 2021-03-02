@@ -6,14 +6,13 @@
 
 .variant {
   cursor: pointer;
-  height: 19vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  line-height: 17vh;
   color: #f7f7f7;
   border-radius: 1.2rem;
   background-color: #222222;
   font-size: 2.5rem;
+  overflow-x: auto;
+  padding: 0.3rem;
   
   @media (max-width: 768px) {
     font-size: 5vw;
@@ -21,6 +20,7 @@
 }
 
 .variant-wrap {
+  text-align: center;
   width: 30%;
   margin-bottom: 4vh;
 }
