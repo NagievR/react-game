@@ -14,9 +14,13 @@
   border-radius: 1.2rem;
   background-color: #222222;
   font-size: 2.5rem;
+  
+  @media (max-width: 768px) {
+    font-size: 5vw;
+  }
 }
 
 .variant-wrap {
   width: 30%;
-  margin-bottom: 2.5rem;
+  margin-bottom: 4vh;
 }

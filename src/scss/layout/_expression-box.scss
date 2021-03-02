@@ -3,12 +3,16 @@
   justify-content: center;
   border-radius: 1.5rem;
   background-color: #222222;
-  padding: 0.5rem 1rem;
+  padding: 0 1rem;
 }
 
 .expression {
   text-align: center;
   color: #f7f7f7;
-  font-size: 4rem;
-  margin: 2.5rem 0;
+  font-size: 4.4rem;
+  margin: 5.5vh 0;
+
+  @media (max-width: 768px) {
+    font-size: 9vw;
+  }
 }
