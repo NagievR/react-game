@@ -46,7 +46,7 @@ export const StoreProvider = ({ children }) => {
       minNumber: 1,
       maxNumber: 20,
       expressionLength: '1',
-      choseOperators: ['+', '-']
+      choseOperator: '+',
     })
   );
 

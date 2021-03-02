@@ -99,7 +99,7 @@ export const HandlersProvider = ({ children }) => {
     const min = gameSettings.minNumber;
     const max = gameSettings.maxNumber;
     const exprLength = Number(gameSettings.expressionLength);
-    const choseOperators = ['*', '+', '-', '/'];
+    const choseOperators = gameSettings.choseOperator;
 
     let newExpression = '';
     for (let i = 0; i < exprLength + 1; i++) {
@@ -208,6 +208,12 @@ export const HandlersProvider = ({ children }) => {
     localStorageManager.set('gameSettings', lengthSet);
   };
 
+  const chooseOperator = oper => {
+    const newSettings = { ...gameSettings, choseOperator: oper };
+    setGameSettings(newSettings);
+    localStorageManager.set('gameSettings', newSettings);
+  };
+
   const context = {
     switchSection,
     closeSections,
@@ -217,6 +223,7 @@ export const HandlersProvider = ({ children }) => {
     setNumbersRange,
     setExpressionLength,
     generateMathContainerDelayed,
+    chooseOperator,
   };
 
   return (

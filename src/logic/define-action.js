@@ -18,6 +18,7 @@ export const DefineActionProvider = ({ children }) => {
     setNumbersRange,
     setExpressionLength,
     generateMathContainerDelayed,
+    chooseOperator,
   } = useHandlers();
 
   const defineAction = (action, payload) => {
@@ -45,6 +46,9 @@ export const DefineActionProvider = ({ children }) => {
         break;
       case consts.newMathContainerDelayed:
         generateMathContainerDelayed();
+        break;
+      case consts.chooseOperator:
+        chooseOperator(payload);
         break;
       default:
         break;
