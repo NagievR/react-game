@@ -3,7 +3,7 @@ import { expressionLength } from "../../logic/consts.js";
 import useDefineAction from "../../logic/define-action.js";
 import useStore from "../../logic/store.js";
   
-const ThemeChoose = () => {
+const ExpressionLength = () => {
 
   const { defineAction } = useDefineAction();
   const { gameSettings } = useStore();
@@ -38,4 +38,4 @@ const ThemeChoose = () => {
   );
 };
 
-export default ThemeChoose;
+export default ExpressionLength;
