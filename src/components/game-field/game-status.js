@@ -48,7 +48,7 @@ const GameStatus = () => {
         {showTriesLeft(gameProgress.triesLeft)}
       </div>
 
-      <div className='timer'>
+      <div className={gameProgress.timeLeft < 6 ? 'timer hurry' : 'timer'}>
         {gameProgress.timeLeft}
         <span className='unit'>sec</span>
       </div>
