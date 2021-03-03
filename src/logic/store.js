@@ -14,6 +14,7 @@ export const StoreProvider = ({ children }) => {
       settings: false,
       keyboardInfo: false,
       gameOver: false,
+      statistic: false,
     })
   );
 
@@ -35,9 +36,9 @@ export const StoreProvider = ({ children }) => {
 
   const [gameProgress, setGameProgress] = useState(
     localStorageManager.get('gameProgress', {
-      timeLeft: null,
-      triesLeft: null,
-      score: null,
+      timeLeft: 25,
+      triesLeft: 4,
+      score: 0,
     })
   );
 
@@ -48,6 +49,10 @@ export const StoreProvider = ({ children }) => {
       expressionLength: '1',
       choseOperator: '+',
     })
+  );
+
+  const [history, setHistory] = useState(
+    localStorageManager.get('history', [])
   );
 
   const [playingAnimation, setPlayingAnimation] = useState(
@@ -72,6 +77,9 @@ export const StoreProvider = ({ children }) => {
 
     playingAnimation,
     setPlayingAnimation,
+
+    history, 
+    setHistory
   };
 
   return (

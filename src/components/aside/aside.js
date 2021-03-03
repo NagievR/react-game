@@ -26,7 +26,7 @@ const Aside = () => {
       document.webkitCancelFullScreen();
     } else {
       setFullscreenIcon(cancelFullscreen);
-      document.documentElement.webkitRequestFullscreen()
+      document.documentElement.webkitRequestFullscreen();
     }
   };
 
@@ -45,6 +45,7 @@ const Aside = () => {
         iconSrc={keyboard}
       />
       <AsideOption
+        openSection={() => openSection(consts.statistic)}
         iconSrc={podium}
       />
     </div>

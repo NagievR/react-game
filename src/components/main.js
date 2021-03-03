@@ -8,6 +8,7 @@ import StartGameButton from "./start-game-button.js";
 import Settings from "./settings/settings.js";
 import KeyboardInfo from "./keyboard-info.js";
 import GameOver from "./game-over.js";
+import StatisticSection from "./statistic/statistic-section.js";
 
 const Main = () => {
 
@@ -24,6 +25,7 @@ const Main = () => {
   const keyboardInfo = <KeyboardInfo />;
   const gameOver = <GameOver />
   const startGame = <StartGameButton />;
+  const statistic = <StatisticSection />
 
   return(
     <main className='main'>
@@ -31,6 +33,7 @@ const Main = () => {
         (sectionToShow.gameField && gameField)
         || (sectionToShow.settings && settings)
         || (sectionToShow.keyboardInfo && keyboardInfo)
+        || (sectionToShow.statistic && statistic)
         || (sectionToShow.gameOver && gameOver)
         || startGame
       }

@@ -2,14 +2,8 @@
 
 @import "./vendors/normalize";
 
-@import "./components/slider";
-
-@import "./themes/lite";
-
 @import "./base/base";
 
-@import "./abstracts/mixins";
-@import "./abstracts/variables";
 @import "./abstracts/helpers";
 
 @import "./layout/app";
@@ -23,3 +17,5 @@
 @import "./layout/keyboard-info";
 @import "./layout/start-btn";
 @import "./layout/game-over";
+@import "./layout/statistic";
+@import "./layout/modal-wrap";

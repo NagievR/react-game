@@ -1,0 +1,83 @@
+.modal-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.modal-content {
+  color: #f7f7f7;
+  font-size: 1.3rem;
+  min-width: 17rem;
+  max-width: 32rem;
+  background-color: #222222;
+  padding: 2rem 10%;
+  padding-top: 4rem;
+  border-radius: 0.5rem;
+  position: relative;
+  max-height: 70vh;
+  overflow-y: auto;
+
+  h2,
+  h3 {
+    margin: 0;
+    margin-bottom: 1.6rem;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  table {
+    margin: 0;
+    font-size: 1.1rem;
+    letter-spacing: 0;
+    user-select: text;
+    border-spacing: 0;
+    border-collapse: collapse;
+    transition: background-color 0.2s;
+
+    th,
+    td {
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    td {
+      text-align: center;
+      padding: 1rem 2vw;
+    }
+
+    th {
+      padding-bottom: 0.5rem;
+    }
+
+    tr {
+      transition: 0.2s;
+
+      &:hover {
+        background-color: rgba(87, 86, 86, 0.11);
+        transform: scale(1.02);
+      }
+    }
+  }
+}
+
+.modal-close { 
+  &::after {
+    content: '';
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    display: block;
+    position: absolute;
+    top: 0.7rem;
+    right: 0.7rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 100%;
+    background-position: center;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='https://www.w3.org/1999/xlink' width='20px' height='20px' viewBox='0 0 20 20' zoomAndPan='disable'%3E%3Cstyle%3Eline %7B stroke: %23ffffff%3B stroke-width: 1%3B %7D%3C/style%3E%3Cline x1='2' y1='2' x2='18' y2='18' /%3E%3Cline x1='18' y1='2' x2='2' y2='18' /%3E%3C/svg%3E");
+    background-size: 2rem 2rem;
+    background-repeat: no-repeat;
+  }
+}
+
+.modal-close:hover::after {
+  transform: rotate(90deg);
+  background-color: rgba(110, 110, 110, 0.228);
+}

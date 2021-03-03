@@ -94,7 +94,7 @@ export const HandlersProvider = ({ children }) => {
     const operator = gameSettings.choseOperator;
     const length = gameSettings.expressionLength;
 
-    const copy = history.slice();
+    const copy = history.slice(-9);
     const historyUpd = [date, score, operator, length];
     copy.push(historyUpd);
 
