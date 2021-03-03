@@ -9,6 +9,7 @@ import Settings from "./settings/settings.js";
 import KeyboardInfo from "./keyboard-info.js";
 import GameOver from "./game-over.js";
 import StatisticSection from "./statistic/statistic-section.js";
+import Footer from "./footer.js";
 
 const Main = () => {
 
@@ -37,6 +38,7 @@ const Main = () => {
         || (sectionToShow.gameOver && gameOver)
         || startGame
       }
+      <Footer />
     </main>
   );
 };
