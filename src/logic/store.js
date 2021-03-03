@@ -35,9 +35,9 @@ export const StoreProvider = ({ children }) => {
 
   const [gameProgress, setGameProgress] = useState(
     localStorageManager.get('gameProgress', {
-      timeLeft: 5,
-      triesLeft: 2,
-      score: 0,
+      timeLeft: null,
+      triesLeft: null,
+      score: null,
     })
   );
 

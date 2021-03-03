@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import { localStorageManager } from './local-storage-manager';
 import useStore from './store';
-import correct from "../assets/audio/correct.mp3";
-import incorrect from "../assets/audio/incorrect.mp3";
-import { gameOver } from './consts';
+import soundCorrect from "../assets/audio/correct.mp3";
+import soundIncorrect from "../assets/audio/incorrect.mp3";
+import soundGameOver from "../assets/audio/game-over.mp3";
+import soundSwitch from "../assets/audio/switch.mp3";
+import soundClose from "../assets/audio/close.mp3";
 
 const Context = React.createContext();
 export default function useHandlers() {
@@ -32,9 +34,24 @@ export const HandlersProvider = ({ children }) => {
     setPlayingAnimation,
   } = useStore();
 
+  const playSound = sound => {
+    const audio = new Audio(sound);
+    audio.volume = audioSettings.soundVolume;
+    audio.play();
+  };
+
   const switchSection = toShow => {
+
+    const isGameOver = toShow === 'gameOver';
+
+    if (isGameOver) {
+      playSound(soundGameOver);
+    } else {
+      playSound(soundSwitch);
+    }
+
     const question = `Skip and go to ${toShow}?`;
-    if ((playingAnimation && toShow !== 'gameOver') 
+    if ((playingAnimation && !isGameOver)
       || (0 && !window.confirm(question))) {
       return;
     } 
@@ -50,6 +67,8 @@ export const HandlersProvider = ({ children }) => {
   };
 
   const closeSections = () => {
+    playSound(soundClose);
+
     const switchedArr = Object.entries(sectionToShow).map(field => (
       [ field[0], field[1] = false ]
     ));
@@ -204,14 +223,13 @@ export const HandlersProvider = ({ children }) => {
     let sound = null;
     let gameProgressUpd = null;
     if (mathContainer.correctAnswerIdx === idx) {
-      sound = new Audio(correct);
+      sound = soundCorrect;
       gameProgressUpd = calcScore();
     } else {
-      sound = new Audio(incorrect);
+      sound = soundIncorrect;
       gameProgressUpd = { triesLeft: gameProgress.triesLeft - 1 };
     }
-    sound.volume = audioSettings.soundVolume;
-    sound.play();
+    playSound(sound);
 
     const progressUpdated = { ...gameProgress, ...gameProgressUpd, timeLeft: 25 };
     setGameProgress(progressUpdated);
