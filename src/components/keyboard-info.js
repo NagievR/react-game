@@ -14,6 +14,8 @@ const KeyboardInfo = () => {
           to choose a variant then press
           &nbsp;<span className='key-descr'>Enter</span>&nbsp;
           to confirm your answer.
+          <br /><br />  
+          *I didnt have time to implement it :(
         </p>
       </article>     
     </ModalWrap>
