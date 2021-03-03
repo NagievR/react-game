@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/react-game/static/css/main.36c3e346.chunk.css",
+    "main.js": "/react-game/static/js/main.272ca09f.chunk.js",
+    "main.js.map": "/react-game/static/js/main.272ca09f.chunk.js.map",
+    "runtime-main.js": "/react-game/static/js/runtime-main.a8de5e2f.js",
+    "runtime-main.js.map": "/react-game/static/js/runtime-main.a8de5e2f.js.map",
+    "static/js/2.d509b450.chunk.js": "/react-game/static/js/2.d509b450.chunk.js",
+    "static/js/2.d509b450.chunk.js.map": "/react-game/static/js/2.d509b450.chunk.js.map",
+    "index.html": "/react-game/index.html",
+    "static/css/main.36c3e346.chunk.css.map": "/react-game/static/css/main.36c3e346.chunk.css.map",
+    "static/js/2.d509b450.chunk.js.LICENSE.txt": "/react-game/static/js/2.d509b450.chunk.js.LICENSE.txt",
+    "static/media/close.mp3": "/react-game/static/media/close.9b943bc2.mp3",
+    "static/media/correct.mp3": "/react-game/static/media/correct.1aed8624.mp3",
+    "static/media/fullscreen-close.c721af96.svg": "/react-game/static/media/fullscreen-close.c721af96.svg",
+    "static/media/fullscreen-open.3a52c44c.svg": "/react-game/static/media/fullscreen-open.3a52c44c.svg",
+    "static/media/game-over.mp3": "/react-game/static/media/game-over.f6cd5c1e.mp3",
+    "static/media/git.f5722355.svg": "/react-game/static/media/git.f5722355.svg",
+    "static/media/heart.75942066.svg": "/react-game/static/media/heart.75942066.svg",
+    "static/media/incorrect.mp3": "/react-game/static/media/incorrect.346f3c9c.mp3",
+    "static/media/keyboard.086bf56b.svg": "/react-game/static/media/keyboard.086bf56b.svg",
+    "static/media/main-song.dda28f4c.mp3": "/react-game/static/media/main-song.dda28f4c.mp3",
+    "static/media/podium.07f29882.svg": "/react-game/static/media/podium.07f29882.svg",
+    "static/media/settings.c2c79171.svg": "/react-game/static/media/settings.c2c79171.svg",
+    "static/media/switch.mp3": "/react-game/static/media/switch.f25b5e65.mp3"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a8de5e2f.js",
+    "static/js/2.d509b450.chunk.js",
+    "static/css/main.36c3e346.chunk.css",
+    "static/js/main.272ca09f.chunk.js"
+  ]
+}
