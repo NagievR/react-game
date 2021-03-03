@@ -205,7 +205,7 @@ export const HandlersProvider = ({ children }) => {
       const initScore = 25;
 
       let extraScore = Math.round(
-        (gameSettings.maxNumber - gameSettings.minNumber) / 2
+        (gameSettings.maxNumber - gameSettings.minNumber) / 6
       ); 
       if (gameSettings.chooseOperator === '*') {
         extraScore = Math.round(extraScore * 1.3);
