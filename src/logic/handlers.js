@@ -3,6 +3,7 @@ import { localStorageManager } from './local-storage-manager';
 import useStore from './store';
 import correct from "../assets/audio/correct.mp3";
 import incorrect from "../assets/audio/incorrect.mp3";
+import { gameOver } from './consts';
 
 const Context = React.createContext();
 export default function useHandlers() {
@@ -61,7 +62,7 @@ export const HandlersProvider = ({ children }) => {
     const reset = { 
       score: 0,
       triesLeft: 4, 
-      timeLeft: 20,
+      timeLeft: 25,
     };
     setGameProgress(reset);
     localStorageManager.set('gameProgress', reset);
@@ -83,14 +84,14 @@ export const HandlersProvider = ({ children }) => {
     if (!gameProgress.timeLeft && gameProgress.triesLeft < 2) {
       updatedProgress = { 
         ...gameProgress, 
-        triesLeft: gameProgress.triesLeft - 1 
+        triesLeft: gameProgress.triesLeft - 1,
       };
     } else if (!gameProgress.timeLeft) {
       generateMathContainer();
       updatedProgress = {
         ...gameProgress, 
         triesLeft: gameProgress.triesLeft - 1, 
-        timeLeft: 7 
+        timeLeft: 25,
       };
     } else {
       updatedProgress = { 
@@ -179,6 +180,24 @@ export const HandlersProvider = ({ children }) => {
   };
   
   const defineUserAnswer = idx => {
+
+    // ===== helpers ======
+    const calcScore = () => {
+      const initScore = 25;
+
+      let extraScore = Math.round(
+        (gameSettings.maxNumber - gameSettings.minNumber) / 2
+      ); 
+      if (gameSettings.chooseOperator === '*') {
+        extraScore = Math.round(extraScore * 1.3);
+      }
+      if (gameSettings.expressionLength > 1) {
+        extraScore = Math.round(extraScore * 1.5);
+      }
+      return { score: gameProgress.score + initScore + extraScore };
+    };
+    // ===================
+
     if (playingAnimation) {
       return;
     }
@@ -186,7 +205,7 @@ export const HandlersProvider = ({ children }) => {
     let gameProgressUpd = null;
     if (mathContainer.correctAnswerIdx === idx) {
       sound = new Audio(correct);
-      gameProgressUpd = { score: gameProgress.score + 20 };
+      gameProgressUpd = calcScore();
     } else {
       sound = new Audio(incorrect);
       gameProgressUpd = { triesLeft: gameProgress.triesLeft - 1 };
@@ -194,7 +213,7 @@ export const HandlersProvider = ({ children }) => {
     sound.volume = audioSettings.soundVolume;
     sound.play();
 
-    const progressUpdated = { ...gameProgress, ...gameProgressUpd, timeLeft: 20 };
+    const progressUpdated = { ...gameProgress, ...gameProgressUpd, timeLeft: 25 };
     setGameProgress(progressUpdated);
     localStorageManager.set('gameProgress', progressUpdated);
 
