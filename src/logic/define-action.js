@@ -20,7 +20,7 @@ export const DefineActionProvider = ({ children }) => {
     generateMathContainerDelayed,
     chooseOperator,
     updateTimer,
-    resetGame,
+    saveAndReset,
   } = useHandlers();
 
   const defineAction = (action, payload) => {
@@ -56,7 +56,7 @@ export const DefineActionProvider = ({ children }) => {
         updateTimer();
         break;
       case consts.gameOver: 
-        resetGame();
+        saveAndReset();
         break;
       default:
         break;
