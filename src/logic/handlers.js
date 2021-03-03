@@ -31,30 +31,18 @@ export const HandlersProvider = ({ children }) => {
     setPlayingAnimation,
   } = useStore();
 
-  const inGameToggle = bool => {
-    const isInGame = { ...gameProgress, inGame: bool };
-    setGameProgress(isInGame);
-    localStorageManager.set('gameProgress', isInGame);
-  };
-
   const switchSection = toShow => {
-    
-    const question = (
-      `You did some progress in the current game.
-      Skip and go to ${toShow} anyway?`
-    );
-
-    if (playingAnimation || (gameProgress.inGame && !window.confirm(question))) {
+    const question = `Skip and go to ${toShow}?`;
+    if ((playingAnimation && toShow !== 'gameOver') 
+      || (0 && !window.confirm(question))) {
       return;
-    } else {
-      inGameToggle(false);
-    }
-
+    } 
     const switchedArr = Object.entries(sectionToShow).map(field => (
       field[0] === toShow 
       ? [ field[0], field[1] = true ]
       : [ field[0], field[1] = false ]
     ));
+    resetGame();
     const switchedObj = Object.fromEntries(switchedArr);
     setSectionToShow(switchedObj);
     localStorageManager.set('sectionToShow', switchedObj);
@@ -69,6 +57,16 @@ export const HandlersProvider = ({ children }) => {
     localStorageManager.set('sectionToShow', switchedObj);
   };
 
+  const resetGame = () => {
+    const reset = { 
+      score: 0, 
+      triesLeft: 2, 
+      timeLeft: 7,
+    };
+    setGameProgress(reset);
+    localStorageManager.set('gameProgress', reset);
+  };
+
   const generateMathContainerDelayed = (ms=900) => {
     if (!playingAnimation) {
       setPlayingAnimation(true); 
@@ -78,11 +76,33 @@ export const HandlersProvider = ({ children }) => {
         localStorageManager.set('playingAnimation', false);
       }, ms);
     }
-    
+  };
+
+  const updateTimer = () => {
+    let updatedProgress = null;
+    if (!gameProgress.timeLeft && gameProgress.triesLeft < 2) {
+      updatedProgress = { 
+        ...gameProgress, 
+        triesLeft: gameProgress.triesLeft - 1 
+      };
+    } else if (!gameProgress.timeLeft) {
+      generateMathContainer();
+      updatedProgress = {
+        ...gameProgress, 
+        triesLeft: gameProgress.triesLeft - 1, 
+        timeLeft: 7 
+      };
+    } else {
+      updatedProgress = { 
+        ...gameProgress, 
+        timeLeft: gameProgress.timeLeft - 1 
+      };
+    }
+    setGameProgress(updatedProgress);
+    localStorageManager.set('gameProgress', updatedProgress);
   };
 
   const generateMathContainer = () => {
-
     // ======== helpers =========
     const randomize = (from, to) => {
       return Math.round(Math.random() * (to - from) + from);
@@ -148,31 +168,37 @@ export const HandlersProvider = ({ children }) => {
     shuffle(newVariants);
 
     const newMathContainer = {
+      ...mathContainer,
       expression: newExpression, 
       correctAnswerIdx: newVariants.indexOf(newResult),
-      userAnswerIdx: null,
       variants: newVariants,
     };
-
-    inGameToggle(true);
 
     setMathContainer(newMathContainer);
     localStorageManager.set('mathContainer', newMathContainer);
   };
-
-  const defineUserAnswer = (idx) => {
+  
+  const defineUserAnswer = idx => {
     if (playingAnimation) {
       return;
     }
-    setMathContainer({ ...mathContainer, userAnswerIdx: idx });
     let sound = null;
+    let gameProgressUpd = null;
     if (mathContainer.correctAnswerIdx === idx) {
       sound = new Audio(correct);
+      gameProgressUpd = { score: gameProgress.score + 20 };
     } else {
       sound = new Audio(incorrect);
+      gameProgressUpd = { triesLeft: gameProgress.triesLeft - 1 };
     }
     sound.volume = audioSettings.soundVolume;
     sound.play();
+
+    const progressUpdated = { ...gameProgress, ...gameProgressUpd, timeLeft: 7 };
+    setGameProgress(progressUpdated);
+    localStorageManager.set('gameProgress', progressUpdated);
+    
+    setMathContainer({ ...mathContainer, userAnswerIdx: idx });
   };
 
   const regulateAudioVolume = data => {
@@ -196,7 +222,6 @@ export const HandlersProvider = ({ children }) => {
       || (value > 999 || value < -999)) {
       return;
     }
-
     const updatedSettings = { ...gameSettings, [target]: Number(value) };
     setGameSettings(updatedSettings)
     localStorageManager.set('gameSettings', updatedSettings);
@@ -224,6 +249,8 @@ export const HandlersProvider = ({ children }) => {
     setExpressionLength,
     generateMathContainerDelayed,
     chooseOperator,
+    updateTimer,
+    resetGame,
   };
 
   return (

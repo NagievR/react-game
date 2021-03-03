@@ -1,27 +1,60 @@
-import React from "react";
+import React, { useEffect } from "react";
 import heart from "../../assets/icons/heart.svg";
+import { updateTimer, gameOver } from "../../logic/consts";
+import useDefineAction from "../../logic/define-action";
+import useStore from "../../logic/store";
 
-const Timer = () => {
-  const left = '28';
+const GameStatus = () => {
+
+  const { gameProgress } = useStore();
+  const { defineAction } = useDefineAction();
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (!gameProgress.triesLeft && !gameProgress.timeLeft) {
+        defineAction(gameOver);
+      } else {
+        defineAction(updateTimer);
+      }
+    }, 1000);
+    return () => clearInterval(intervalId);
+  });
+
+  useEffect(() => {
+    if (!gameProgress.triesLeft) {
+      setTimeout(defineAction, 800, gameOver);
+    }
+  }, [gameProgress.triesLeft]);
+
+  const showTriesLeft = tries => {
+    const triesLeft = [];
+    for (let i = 0; i < tries; i++) {
+      triesLeft.push(
+        <img className='heart' alt='heart' src={heart} key={i} />
+      );
+    }
+    return triesLeft;
+  };
 
   return(
     <div className='game-status-wrap'>
+
       <div className='score'>
-        2280
+        {gameProgress.score}
         <span className='unit'>pts</span>
       </div>
 
       <div className='hearts-box'>
-        <img className='heart' src={heart} />
-        <img className='heart' src={heart} />
-        <img className='heart' src={heart} />
+        {showTriesLeft(gameProgress.triesLeft)}
       </div>
 
       <div className='timer'>
-        {left}<span className='unit'>sec</span>
+        {gameProgress.timeLeft}
+        <span className='unit'>sec</span>
       </div>
+
     </div>
   );
 };
 
-export default Timer;
+export default GameStatus;

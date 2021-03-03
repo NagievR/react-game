@@ -19,6 +19,8 @@ export const DefineActionProvider = ({ children }) => {
     setExpressionLength,
     generateMathContainerDelayed,
     chooseOperator,
+    updateTimer,
+    resetGame,
   } = useHandlers();
 
   const defineAction = (action, payload) => {
@@ -49,6 +51,12 @@ export const DefineActionProvider = ({ children }) => {
         break;
       case consts.chooseOperator:
         chooseOperator(payload);
+        break;
+      case consts.updateTimer:
+        updateTimer();
+        break;
+      case consts.gameOver: 
+        resetGame();
         break;
       default:
         break;

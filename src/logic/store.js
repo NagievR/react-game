@@ -13,6 +13,7 @@ export const StoreProvider = ({ children }) => {
       gameField: false,
       settings: false,
       keyboardInfo: false,
+      gameOver: false,
     })
   );
 
@@ -34,10 +35,9 @@ export const StoreProvider = ({ children }) => {
 
   const [gameProgress, setGameProgress] = useState(
     localStorageManager.get('gameProgress', {
-      timeLeft: 20,
-      triesLeft: 3,
+      timeLeft: 5,
+      triesLeft: 2,
       score: 0,
-      inGame: false,
     })
   );
 
