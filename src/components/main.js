@@ -2,11 +2,12 @@ import React from "react";
 import useStore from "../logic/store.js";
 
 import ExpressionBox from "./game-field/expression-box.js";
-import Timer from "./game-field/timer.js";
+import GameStatus from "./game-field/game-status.js";
 import Variants from "./game-field/variants/variants.js";
 import StartGameButton from "./start-game-button.js";
 import Settings from "./settings/settings.js";
 import KeyboardInfo from "./keyboard-info.js";
+import GameOver from "./game-over.js";
 
 const Main = () => {
 
@@ -15,22 +16,14 @@ const Main = () => {
   const gameField = (
     <>
       <ExpressionBox />
-      <Timer />
+      <GameStatus />
       <Variants />
     </>
   );
-
-  const startGame = (
-    <StartGameButton />
-  );
-
-  const settings = (
-    <Settings />
-  );
-
-  const keyboardInfo = (
-    <KeyboardInfo />
-  );
+  const settings = <Settings />;
+  const keyboardInfo = <KeyboardInfo />;
+  const gameOver = <GameOver />
+  const startGame = <StartGameButton />;
 
   return(
     <main className='main'>
@@ -38,6 +31,7 @@ const Main = () => {
         (sectionToShow.gameField && gameField)
         || (sectionToShow.settings && settings)
         || (sectionToShow.keyboardInfo && keyboardInfo)
+        || (sectionToShow.gameOver && gameOver)
         || startGame
       }
     </main>
