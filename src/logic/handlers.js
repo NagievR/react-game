@@ -32,6 +32,9 @@ export const HandlersProvider = ({ children }) => {
 
     playingAnimation,
     setPlayingAnimation,
+
+    history, 
+    setHistory,
   } = useStore();
 
   const playSound = sound => {
@@ -41,26 +44,15 @@ export const HandlersProvider = ({ children }) => {
   };
 
   const switchSection = toShow => {
-
-    const isGameOver = toShow === 'gameOver';
-
-    if (isGameOver) {
-      playSound(soundGameOver);
-    } else {
-      playSound(soundSwitch);
-    }
-
-    const question = `Skip and go to ${toShow}?`;
-    if ((playingAnimation && !isGameOver)
-      || (0 && !window.confirm(question))) {
+    if (playingAnimation && toShow !== 'gameOver') {
       return;
     } 
+    playSound(soundSwitch);
     const switchedArr = Object.entries(sectionToShow).map(field => (
       field[0] === toShow 
       ? [ field[0], field[1] = true ]
       : [ field[0], field[1] = false ]
     ));
-    saveAndReset();
     const switchedObj = Object.fromEntries(switchedArr);
     setSectionToShow(switchedObj);
     localStorageManager.set('sectionToShow', switchedObj);
@@ -68,7 +60,6 @@ export const HandlersProvider = ({ children }) => {
 
   const closeSections = () => {
     playSound(soundClose);
-
     const switchedArr = Object.entries(sectionToShow).map(field => (
       [ field[0], field[1] = false ]
     ));
@@ -78,6 +69,38 @@ export const HandlersProvider = ({ children }) => {
   };
 
   const saveAndReset = () => {
+    const getDate = () => {
+      const curr = new Date();
+
+      let date = '0' + curr.getDate();
+      date = date.slice(-2);
+
+      let month = '0' + curr.getMonth();
+      month = month.slice(-2);
+
+      let hours = '0' + curr.getHours();
+      hours = hours.slice(-2);
+
+      let mins = '0' + curr.getMinutes();
+      mins = mins.slice(-2);
+
+      return `${date}.${month} ${hours}:${mins}`;
+    }
+
+    playSound(soundGameOver);
+
+    const date = getDate();
+    const score = gameProgress.score;
+    const operator = gameSettings.choseOperator;
+    const length = gameSettings.expressionLength;
+
+    const copy = history.slice();
+    const historyUpd = [date, score, operator, length];
+    copy.push(historyUpd);
+
+    setHistory(copy);
+    localStorageManager.set('history', copy);
+
     const reset = { 
       score: 0,
       triesLeft: 4, 
