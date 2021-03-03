@@ -42,7 +42,7 @@ export const HandlersProvider = ({ children }) => {
       ? [ field[0], field[1] = true ]
       : [ field[0], field[1] = false ]
     ));
-    resetGame();
+    saveAndReset();
     const switchedObj = Object.fromEntries(switchedArr);
     setSectionToShow(switchedObj);
     localStorageManager.set('sectionToShow', switchedObj);
@@ -57,11 +57,11 @@ export const HandlersProvider = ({ children }) => {
     localStorageManager.set('sectionToShow', switchedObj);
   };
 
-  const resetGame = () => {
+  const saveAndReset = () => {
     const reset = { 
-      score: 0, 
-      triesLeft: 2, 
-      timeLeft: 7,
+      score: 0,
+      triesLeft: 4, 
+      timeLeft: 20,
     };
     setGameProgress(reset);
     localStorageManager.set('gameProgress', reset);
@@ -194,10 +194,10 @@ export const HandlersProvider = ({ children }) => {
     sound.volume = audioSettings.soundVolume;
     sound.play();
 
-    const progressUpdated = { ...gameProgress, ...gameProgressUpd, timeLeft: 7 };
+    const progressUpdated = { ...gameProgress, ...gameProgressUpd, timeLeft: 20 };
     setGameProgress(progressUpdated);
     localStorageManager.set('gameProgress', progressUpdated);
-    
+
     setMathContainer({ ...mathContainer, userAnswerIdx: idx });
   };
 
@@ -250,7 +250,7 @@ export const HandlersProvider = ({ children }) => {
     generateMathContainerDelayed,
     chooseOperator,
     updateTimer,
-    resetGame,
+    saveAndReset,
   };
 
   return (
